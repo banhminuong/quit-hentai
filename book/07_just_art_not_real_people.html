@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>It&#x27;s Just Art, Not Real People - The EasyPeasy Way to Quit Hentai</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The EasyPeasy Way to Quit Hentai</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="its-just-art-not-real-people"><a class="header" href="#its-just-art-not-real-people">"It's Just Art, Not Real People"</a></h1>
+<p>Of all the justifications a hentai user reaches for, this is probably the most convincing, to themselves, and the one most readily accepted by everyone else too. No real performer was filmed. No one was paid to do something they might regret. Nothing was extracted from a real body. Surely, then, there's nothing to question here at all?</p>
+<p>This belief deserves to be taken seriously, not dismissed, because part of it is genuinely true. There is no real performer in a piece of hentai. That fact is real, and it matters, it's part of why this book treats hentai as its own subject rather than just relabelling a chapter about regular pornography. But "no real performer was harmed in the making of this" and "this has no effect on the person watching it" are two completely different claims, and the trap depends entirely on you not noticing they're different.</p>
+<p>Think back to the questions in Chapter 4 and 5: where does the urge to watch actually come from? Not from the art itself, that's just the delivery method, but from the same reward circuitry, the same dopamine response to novelty, the same DeltaFosB-reinforced pathways described earlier. None of that machinery cares whether the image in front of you was filmed or drawn. Your brain doesn't have a separate, gentler reward system reserved specifically for animated content. It has one reward system, and hentai engages it exactly the same way any other supernormal stimulus does, often more intensely, since art has no physical limits at all. A photograph is constrained by what a camera can actually capture. A drawing is constrained by nothing but imagination, which is precisely why escalation tends to move faster, not slower, in this direction.</p>
+<p>So ask yourself plainly: does the "no real person" fact actually change anything about how you got hooked, how often you think about it, how much time it's eaten up, or how it's affected your interest in real intimacy? If you're honest, the answer is no. The mechanism runs identically either way. What's actually changed is your own willingness to take the problem seriously, because "it's just art" gives you permission to skip the self-examination a more obviously concerning habit would force on you.</p>
+<p>This is exactly the kind of brainwashing described back in Chapter 5, a story that lets the behaviour continue without ever having to look directly at it. Every addiction needs a story that makes it feel exceptional, not really an addiction, not like those other people. "It's just art, nobody's hurt" is hentai's version of that story. It happens to be the most effective version too, because unlike most addiction-justifying stories, this one is built on a true fact. That's what makes it so sticky: you don't have to lie to yourself about the central claim, only about what that claim actually proves.</p>
+<p>There's a second layer worth naming directly. Plenty of users feel real revulsion at material involving real performers, the discomfort of exploitation, of someone's actual life and choices being part of the picture, and use that discomfort as further proof that hentai is the more "ethical" option. That instinct toward ethical sensitivity is genuinely a good one. But notice what it quietly does here: it reframes a behavioural addiction as a moral choice, and once something feels like a moral choice well made, there's very little reason left to examine it as a habit at all. You end up defending the dependency as though defending your own decency.</p>
+<p>Here's a cleaner way to test the belief. If "no real person, so no real harm" were actually the load-bearing argument, then the amount of time spent, the secrecy involved, the effect on concentration, energy, mood, and interest in real partners, none of that should matter, since by this logic the activity is harmless almost by definition. But you already know, from your own experience, that all of those things do matter, you've likely felt every one of them. The "it's just art" defence only ever addresses one narrow question (is anyone being directly exploited in this specific image), while quietly standing in for a completely different question it was never built to answer (is this behaviour doing anything to me).</p>
+<p>None of this is an argument that hentai is morally equivalent to material involving real performers, that's not the claim, and it's not what this book is here to litigate. It's simply this: whatever ethical comfort comes from "nobody real was involved" tells you nothing whatsoever about whether your own relationship to the habit is healthy, proportionate, or something you'd genuinely choose if you weren't already hooked. Those are separate questions, and only one of them is what this book is helping you answer.</p>
+<p>Once you see the gap between those two questions clearly, you'll notice something useful: it's also where the next fallacy lives. If "it's just art" doesn't actually explain why the habit is hard to stop, then something else is doing that work, and the obvious next thing to look at is hentai's seemingly bottomless variety, which is exactly what the next chapter takes apart.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="06_brainwashing_aspects.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="08_illusion_infinite_novelty.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="06_brainwashing_aspects.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="08_illusion_infinite_novelty.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

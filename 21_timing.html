@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Timing - The EasyPeasy Way to Quit Hentai</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The EasyPeasy Way to Quit Hentai</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="timing"><a class="header" href="#timing">Timing</a></h1>
+<p>Beyond the obvious fact that this isn't doing you any good and that the right moment is now, timing still matters as a practical question. Society tends to treat hentai use as a slightly embarrassing quirk rather than something that genuinely affects health and relationships. That's not accurate. This is a real behavioural addiction, capable of doing real damage to how you relate to people. The worst thing that happens to most users in this whole story is simply getting hooked in the first place. Stay hooked long enough, and the consequences tend to compound. Getting the timing right gives you the best possible shot at a clean break.</p>
+<p>Start by identifying when hentai feels most pulled-toward in your own life. If you're someone who reaches for it mainly to manage work stress, consider attempting this during a quieter stretch or some genuine downtime. If, instead, it's boredom or unstructured time that triggers it for you, the opposite logic applies, pick a period with more structure and demand on your attention.</p>
+<p>Either way, look ahead roughly three weeks and flag anything likely to derail you, a work trip, a partner being away, anything that tends to coincide with heavier use. None of that needs to stop you, as long as you've planned for it in advance and don't go into it expecting to feel deprived. Don't try cutting down in the meantime either, that only reinforces the illusion that restriction itself feels good. If anything, it can help to let yourself use freely and fully right up until you start, paying close attention, during that final stretch, to how little genuine satisfaction is actually there: the flatness afterward, any physical discomfort, the restlessness, the irritability. Hold that observation alongside how good it'll feel once you're finally past needing any of it.</p>
+<p><strong>WHATEVER YOU DO, DON'T LET YOURSELF DRIFT INTO "NOT NOW, LATER" AND QUIETLY SHELVE THE WHOLE THING. SET AN ACTUAL DATE NOW, AND LOOK FORWARD TO IT.</strong></p>
+<p>Remember: you aren't giving up anything real here. What's actually coming is a set of genuine, positive gains.</p>
+<p>For a long time, plenty of professionals treated this kind of material as essentially harmless, often without fully appreciating the difference between static, occasional exposure and the kind of endless, instantly available streaming and interactive material available today. The real complication is that while every user is technically just managing a dopamine craving, what actually keeps someone hooked isn't the chemistry on its own, it's the personal belief system layered on top of it. A genuinely intelligent person can fall for a confidence trick once. Only someone unwilling to look honestly keeps falling for the same trick after recognising it. Fortunately, most users aren't actually fools, they just believe they must be, which is a different problem entirely. Each person's specific version of this conditioning looks a little different too, which is part of why the range of user types can look so varied on the surface.</p>
+<p>The original method this approach is built on was designed for nicotine, one of the fastest-acting and most addictive substances known. It's genuinely useful that the same underlying philosophy translates this well to something as different as hentai dependency. The actual challenge, then and now, isn't really about gathering more knowledge, it's about finding a way to make that knowledge land for each individual person reading it. Knowing, abstractly, that someone could quit easily and even enjoy the process is fairly pointless unless they can actually be brought to believe it themselves. Allen Carr, in the original work this entire approach descends from, faced pushback on one piece of advice in particular: telling people to keep smoking right up until they finished the book. Plenty of readers argued this just gave people an excuse to read painfully slowly, or never finish at all. Carr's reasoning held firm regardless: telling someone to stop immediately, before they'd even read the material, risked losing them before they ever picked the book up in the first place. He described one early smoker who came to him almost resentfully, insisting he was strong-willed in every other part of his life and didn't understand why this particular thing required outside help, half-joking that he could probably manage it himself if he were just allowed to keep smoking the whole time he tried.</p>
+<p>There's a reason that resistance shows up so consistently. Society has decided, broadly, that quitting something like smoking is brutally hard, and what does anyone reach for when something feels hard? Whatever crutch they're used to leaning on. Quitting can feel like a double blow this way: a genuinely difficult task, made harder by removing the very tool you'd normally use to cope with difficulty. Perhaps the real value in this approach is that nothing has to be "given up" partway through the process at all. Instead, the fear and doubt get dismantled first, so that by the time the final session actually happens, the sense of freedom is already largely in place.</p>
+<p>This adaptation keeps that same core piece of advice intact. No matter how often it's stated plainly that this can be easy and even enjoyable, plenty of people simply won't be able to accept that yet, purely because of how deeply "this is supposed to be hard" has been absorbed elsewhere.</p>
+<p>Timing is actually the one place where it's worth pushing back a little on that original advice. The logical version says: if office stress triggers your use, pick a holiday to attempt quitting, and vice versa if boredom is the trigger. That's not really the easiest path, it's the path of least resistance. A genuinely more thorough version would be choosing whatever period you personally consider hardest. Push through stress, social pressure, difficulty focusing, or boredom, whichever applies, and once you've proven you can handle and even enjoy life through the worst-case version of your own triggers, everything else becomes comparatively easy. But if that were the actual advice given upfront, would you even attempt it at all?</p>
+<p>Here's a useful comparison. Picture two people about to go swimming together. One wades in slowly, toe first, taking half an hour to fully commit. That's its own kind of slow torture. The other already knows the water's going to be cold regardless of how long they wait, so they just dive straight in. Now imagine insisting the first person had to dive in immediately or not swim at all. Most likely, they simply wouldn't get in the water. The lesson here isn't subtle: demanding the hardest possible starting conditions risks nobody ever starting.</p>
+<p>Plenty of readers, going by feedback on the original version of this advice, have used "wait for the right timing" as a quiet way of indefinitely postponing the actual attempt. One tempting alternative would be to build up a big lead-in, something like, <em>"Timing matters a great deal, and the next section will tell you exactly the best moment to attempt this,"</em> followed by a page that simply says, in large letters, <strong>NOW</strong>. That actually is the most honest advice available. But would you actually take it, presented that bluntly? Maybe the most subtle part of this entire trap is that whenever there's real stress in your life, it never feels like the right time to quit, and whenever there isn't, there's no urgency pushing you to bother. Worth asking yourself directly:</p>
+<ol>
+<li>
+<p>When you first started using hentai, did you consciously decide you'd be dependent on it for the rest of your life, with no ability to ever stop? <strong>Of course not.</strong></p>
+</li>
+<li>
+<p>Are you actually planning on staying dependent for the rest of your life, permanently unable to quit? <strong>Of course not.</strong></p>
+</li>
+</ol>
+<p>So when, exactly? Tomorrow? Next year? The year after that? Isn't that the exact same question you've been quietly asking yourself ever since you first suspected you were hooked? Are you hoping you'll simply wake up one day with the desire gone on its own? Don't count on it, dependency trends toward getting more entrenched over time, not less, left unaddressed. Are you planning to wait until getting out of bed in the morning genuinely feels harder than reaching for hentai instead? That would be a strange point to wait for.</p>
+<p>The actual trap here is the belief that now specifically isn't the right time, paired with the quiet assumption that tomorrow will somehow be easier. Most of us assume our lives are unusually stressful, when in reality, by almost any historical standard, an enormous amount of genuine danger and uncertainty has already been removed from most people's day-to-day existence. Leaving the house today doesn't typically involve real threat to your life. Most people aren't seriously uncertain about their next meal or where they'll sleep tonight. Compare that to almost any wild animal, constantly facing real, immediate danger just existing in its environment, and yet managing, through the same stress-response systems we also have. The truth is that early childhood and adolescence tend to be, biologically speaking, some of the more genuinely stressful periods of any creature's life, our own included, even though it rarely registers that way looking back. Evolution has equipped us remarkably well to handle real stress, which is part of why so many people who had genuinely difficult childhoods still go on to live entirely ordinary, stable adult lives.</p>
+<p>It's a cliché, but accurate: without your health, very little else holds up well either. Feeling genuinely strong, physically and mentally, makes the highs better and the lows considerably more manageable. Plenty of people confuse responsibility itself with stress, when really, responsibility only becomes stressful once you no longer feel equipped to handle it. What actually wears most people down isn't responsibility, work, or age on their own, it's leaning on something that quietly works against the very resilience needed to handle those things in the first place.</p>
+<p>Here's the practical takeaway: you've already decided you're not staying caught in this for the rest of your life. Which means, at some point, easy or difficult, you're going through this process regardless. Hentai isn't a habit or a genuine pleasure, it's a real dependency, and as established, it only tends to get more entrenched with time, not less. The right time to deal with it is now, or as close to now as you can manage. Think about how quickly a week of your life already passes without your noticing. That's genuinely all the time this takes to set in motion. Picture how good it'll feel to go through the rest of your life without that quiet background weight following you around. Follow the instructions as laid out, and you likely won't even need the full three weeks suggested here. <strong>You'll find it easy, and you'll actually enjoy it.</strong></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="20_a_social_habit.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="22_will_i_miss_the_fun.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="20_a_social_habit.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="22_will_i_miss_the_fun.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Illusion of Infinite Novelty - The EasyPeasy Way to Quit Hentai</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The EasyPeasy Way to Quit Hentai</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-illusion-of-infinite-novelty"><a class="header" href="#the-illusion-of-infinite-novelty">The Illusion of Infinite Novelty</a></h1>
+<p>Back in Chapter 4, we covered how dopamine responds powerfully to novelty itself, not just to the act of sex. That single fact explains more about why hentai is hard to quit than almost anything else in this book, so it's worth sitting with directly, in its own right.</p>
+<p>Live-action pornography, for all its variety, is still bounded by physical reality. There are only so many performers, only so many bodies, only so many physically possible scenarios a camera can capture. Hentai has no such ceiling. Any character, any scenario, any combination of traits, any premise a writer or artist can imagine can exist, and usually already does, somewhere, in enormous quantity. New material isn't released, it's generated continuously, by thousands of independent creators worldwide, across an open-ended number of genres, art styles, and fictional settings that keep multiplying. There is, for any practical purpose, no bottom to this well.</p>
+<p>This matters because of exactly the mechanism described earlier: the brain's reward system habituates to the familiar and lights up for the new. With live-action material, that habituation eventually runs into a hard wall, reality only contains so much, and that wall is part of what allows some users to plateau or lose interest over time. With hentai, the wall doesn't exist. There's always a new series, a new artist, a new premise, a new genre you hadn't tried, so the novelty-seeking circuit never has to plateau. It just keeps getting fed.</p>
+<p>This produces a specific trap that's worth naming directly: the "infinite menu" effect. Picture standing in front of a buffet that never runs out and never repeats a dish. You don't have to actually try to be enjoying yourself less than someone eating a normal meal, the mere existence of infinite choice changes how you relate to any single item on the table. Nothing has to be fully satisfying when something else, untried, is always one click away. Satisfaction stops being the point. Searching becomes the point. This is precisely why so many users report that a session feels less like enjoying something and more like restlessly scrolling, tab after tab, chapter after chapter, without ever quite landing anywhere. That restlessness isn't a personal failing or a sign you're doing it wrong. It's the entirely predictable result of a reward system built for scarcity being handed actual infinity.</p>
+<p>There's a second layer to this trap, and it's subtler. Because hentai spans so many genres, art styles, and tones, comedic, romantic, horror, slice-of-life, action, it doesn't feel like one habit. It feels like dozens of separate, mild interests, easy to justify individually, the way someone might justify several harmless hobbies. "I just like this one series." "I just enjoy this particular artist's style." "I only watch the funny ones, I'm not really into the serious stuff." Each one sounds modest and easy to defend on its own. But step back and look at the total time, money, and mental space all of them occupy together, and the picture looks very different from any single piece of it. The infinite variety isn't just feeding the novelty-seeking circuit, it's also disguising the size of the overall habit by chopping it into pieces too small to look concerning individually.</p>
+<p>Worth asking honestly: has the range of genres or styles you're drawn to widened over time? Most users, looking back honestly, will say yes, often considerably. That's not a coincidence or a sign of evolving taste. It's the same desensitisation process from Chapter 4, playing out across an effectively unlimited supply of new material to escalate into. With live-action pornography, escalation eventually runs into the genuine limits of what exists. With hentai, the escalation runs into nothing, conceptually, there is always more, always weirder, always further from where you started, available without friction.</p>
+<p>It's also worth being honest about what novelty-chasing actually buys you, which the earlier chapters already answered: nothing. The new series doesn't deliver more satisfaction than the last one, it delivers the same brief relief, dressed differently. The thrill, if there's any thrill left at all, is in the seeking, not in whatever's finally found. That's precisely why "I just haven't found the right one yet" is never actually resolved by finding another one. There isn't a right one. The chase itself was never going to end anywhere, because it isn't actually a search for anything, it's a habit dressed up as a search.</p>
+<p>None of this means variety itself is the enemy, or that enjoying anime, manga, or any visual art is a problem. The issue isn't variety. It's a reward system, the one described back in Chapter 4, plugged into an effectively bottomless supply of one specific kind of stimulus, with nothing in your daily life built to interrupt that loop the way physical limits used to. Once you see the infinite menu for what it is, just another piece of the trap rather than a genuine feature worth protecting, it loses a great deal of its pull. There's no actual loss in stepping away from a search that was never going anywhere in the first place.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="07_just_art_not_real_people.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="09_anime_makes_it_safer.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="07_just_art_not_real_people.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="09_anime_makes_it_safer.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

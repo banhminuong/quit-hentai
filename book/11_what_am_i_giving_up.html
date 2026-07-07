@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>What am I giving up? - The EasyPeasy Way to Quit Hentai</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The EasyPeasy Way to Quit Hentai</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="what-am-i-giving-up"><a class="header" href="#what-am-i-giving-up">What am I giving up?</a></h1>
+<p><strong>Absolutely nothing.</strong> Hentai is hard to give up because of a fear, the fear that you're being deprived of a real pleasure or a real coping tool. The fear that certain pleasant moments will never feel quite the same again. The fear that you'll struggle to handle stress without it. All of this is the conditioning covered back in Chapter 5, convincing you that release, and by extension orgasm, is something you fundamentally need on a regular basis, and further still, that there's something genuinely valuable in hentai specifically that quitting will rip away from you, leaving an empty space behind.</p>
+<p>Get this clear in your mind: <strong>hentai doesn't fill a void. It creates one.</strong></p>
+<p>Your body is an extraordinarily sophisticated system, however you think it came to be, evolution, design, or some combination neither science nor philosophy has fully settled. No technology humans have built comes close to matching what a living body already does without instruction. If whatever process built that system had intended it to handle something as engineered and relentless as modern hentai, it would have built a different reward system to handle it. The discomfort you feel isn't a malfunction. It's a warning system doing exactly its job, and ignoring it is genuinely risky.</p>
+<h2 id="theres-nothing-to-give-up"><a class="header" href="#theres-nothing-to-give-up">There's nothing to give up</a></h2>
+<p>Once the little monster is out of your body and the underlying conditioning, the big monster, is out of your thinking, you won't particularly want to masturbate to hentai, or feel any pull toward it at all. A lot remains genuinely unclear in how the medical and psychological community studies this specific dependency; plenty of professionals still don't have a clean framework for recognising hentai dependency on its own terms, separate from pornography use generally, and a lot of the symptoms that show up get misattributed to something else entirely. None of this is because users are unintelligent. It's simply that they're miserable without it, and also miserable, in a different way, because of it. Caught between those two kinds of misery, abstaining and feeling deprived, or continuing and feeling the guilt and self-disgust that follows, the mind tends to look for almost any explanation other than the obvious one. Low energy, difficulty with real intimacy, restlessness, all of it gets quietly filed under stress, age, or "just how I am," rather than traced back to where it actually started.</p>
+<p>A familiar comparison: most people have seen a smoker invent some excuse to slip away for a quick cigarette, and recognised, watching it, that this has nothing to do with enjoyment. It's relief from discomfort, nothing more. The same pattern shows up here.</p>
+<p>Plenty of people internalise, early on, the idea that arousal isn't complete without reaching climax, and from there, the further idea that they can't really enjoy intimacy without one. Hentai gets marketed, implicitly if not explicitly, as something that helps with that, sometimes even framed as a kind of confidence-building or education for real encounters. That framing doesn't hold up. Training your reward system on stimulus this exaggerated and unlimited doesn't prepare you for anything real, it actively works against your ability to respond to it.</p>
+<p>Beyond having nothing to give up, there are real, substantial gains on the other side. Most people thinking about quitting focus on physical health and sexual function, and those reasons are valid and worth caring about. But the deeper gains tend to be psychological:</p>
+<ul>
+<li>
+<p>Getting back a baseline sense of confidence and ease.</p>
+</li>
+<li>
+<p>Freedom from a pattern that's been quietly running your evenings and your attention.</p>
+</li>
+<li>
+<p>No longer carrying around that background hum of guilt and self-disgust.</p>
+</li>
+</ul>
+<h2 id="void-the-void-the-beautiful-void"><a class="header" href="#void-the-void-the-beautiful-void">Void, the void, the beautiful void!</a></h2>
+<p>Imagine you develop a small, irritating skin sore. A pharmacist gives you a free sample of ointment to try. You apply it, and the sore vanishes almost instantly. A week later, it's back, so you return for more, and the pharmacist tells you to just keep the tube for next time.</p>
+<p>The ointment works again. But each time the sore returns, it's a little larger, a little more painful, and the gap between flare-ups keeps shrinking. Eventually, it's covering a significant part of your skin, returning every hour, intensely uncomfortable. The ointment still clears it, temporarily, but you're genuinely worried now. Will this keep spreading? Will the gap between flare-ups disappear completely? Your doctor has no answer. Nothing else helps, only the ointment.</p>
+<p>At this point, you never leave home without a tube. Travelling means packing several, just in case. And on top of the health worry, the pharmacist is now charging a steep price per tube, money you feel you have no real choice but to pay.</p>
+<p>Then you come across an article and realise you're far from alone, plenty of people are dealing with the exact same thing. It turns out the ointment never actually cured anything. It just pushed the irritation beneath the surface temporarily. The ointment itself is what's been driving the sore's growth all along. The actual fix is simply to stop using it, and given time, it resolves on its own.</p>
+<p>Knowing that, would you keep reaching for the ointment? Would resisting it take willpower? Maybe a few uneasy days if you weren't fully convinced yet, but the moment you noticed real improvement, the pull toward it would fade on its own. Would you feel deprived? Not remotely, you'd just solved something you'd assumed was permanent. Even if full recovery took the better part of a year, every bit of visible progress along the way would feel like genuine relief. That's exactly the shape of what quitting hentai feels like.</p>
+<p>The "sore" here isn't just the obvious physical stuff, fatigue, difficulty getting or staying aroused with a real partner, the simple wasted hours spent on two-dimensional material. It also includes the quieter things: a creeping sense of entitlement to release, the dread of being found out, and worst of all, the contempt you've started to feel for yourself.</p>
+<p>That sore is exactly what keeps your mind closed off to all of it, that low-grade panic, wanting the fix regardless of cost. Someone without this dependency never feels that particular panic at all. The only real thing you've ever been up against, throughout this whole pattern, is fear, and the single biggest win available to you is simply being free of it. That fear didn't exist before the first session. Every session since has just made it a little stronger.</p>
+<p>Some users manage to convince themselves they're perfectly content, blinded enough by the little monster that they go on living this exact cycle while constructing increasingly elaborate justifications for it. There's no need to be one of them.</p>
+<p><em>It really is good to be free.</em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="10_convenience_stigma_paradox.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="12_saving_time.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="10_convenience_stigma_paradox.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="12_saving_time.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

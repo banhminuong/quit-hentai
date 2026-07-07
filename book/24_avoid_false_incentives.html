@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Avoid False Incentives - The EasyPeasy Way to Quit Hentai</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The EasyPeasy Way to Quit Hentai</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="avoid-false-incentives"><a class="header" href="#avoid-false-incentives">Avoid False Incentives</a></h1>
+<p>A lot of people attempting to quit through willpower try to boost their motivation by setting up external rewards. A typical version: promise yourself a gift, a purchase, a treat, after staying clean for a full month. This sounds reasonable but it's actually counterproductive, because any honest user would much rather keep watching hentai daily than receive a self-bought reward for not doing so. Framing it this way introduces doubt immediately: not only are you committing to <em>thirty days</em> of abstinence, you're not even sure those days are going to feel good. Your usual outlet has been taken away, and you've replaced it with a consolation prize you're buying for yourself. All this achieves is making the apparent sacrifice feel larger and, by extension, making what you're giving up feel more precious.</p>
+<p>Other familiar versions of the same pattern:</p>
+<ul>
+<li><em>"I'll quit so I'm finally forced to build a real social life and pursue actual intimacy."</em></li>
+<li><em>"I'll quit so the focus and energy I get back puts me ahead of where I am now."</em></li>
+<li><em>"I'll quit so I stop wasting something I want to channel into real connection and personal growth."</em></li>
+</ul>
+<p>These aren't lies exactly, and they might even produce real results. But sit with what happens next: if you get the outcome you wanted, the novelty eventually fades and you'll find yourself feeling deprived again. If you don't get it, you'll feel let down. Either way, sooner or later, the same underlying pull comes back. Tying quitting to a conditional reward doesn't remove the problem, it just sets up a different way for the problem to return.</p>
+<p>Linking quitting to an external incentive only amplifies doubt, because every time you check whether the incentive is actually materialising, you're also checking whether quitting was "worth it." Thoughts like <em>"Did it even make a difference? If I don't end up with what I wanted, did I do something wrong?"</em> are exactly the kinds of thoughts that recreate the sense of sacrifice and, with it, the craving.</p>
+<p>Group pacts and forum challenges fall into the same category. They do have one real advantage: they create structure and shared accountability, which can reduce temptation during specific windows. But they tend to fail for predictable reasons.</p>
+<ol>
+<li>
+<p><strong>The incentive is still false.</strong> Quitting because a group of strangers online is also quitting at the same time doesn't address anything real. It just adds social pressure on top of an already uncomfortable process, which intensifies the feeling of deprivation rather than reducing it. People who aren't genuinely ready to quit yet end up as secret users, which compounds the sense of dependency and shame rather than dismantling it.</p>
+</li>
+<li>
+<p><strong>Shared willpower breeds a specific kind of failure.</strong> When a group is white-knuckling it together, everyone's quietly waiting for the craving to pass on its own. If one person slips, it instantly becomes the permission slip everyone else was already looking for. Most participants, in practice, have already quietly lapsed before the visible breakdown happens.</p>
+</li>
+<li>
+<p><strong>Shared credit dilutes the genuine reward of quitting.</strong> There really is a meaningful sense of accomplishment in doing this. That feeling matters, and it's a real support during the early days of adjustment. When everyone is "doing it together," that personal sense of achievement gets spread so thin it barely registers.</p>
+</li>
+<li>
+<p><strong>Beware of the promise that quitting makes you exceptional.</strong> Breaking free from this dependency will genuinely make life better, you'll be free of a draining internal conflict, your brain starts genuinely recovering, and impulse control comes back. But it won't make you a different person in every other respect, it won't guarantee particular outcomes in your relationships or your social life, and it won't make anyone else automatically impressed by you. Nobody outside this process particularly cares whether you quit. You're not weak for having been dependent three times a day, and you're not automatically strong for having stopped. You're just someone who untangled something that had you caught.</p>
+</li>
+</ol>
+<p>None of the external incentives, rewards, group dynamics, promised outcomes, or social validation make the underlying pull go away. If the arguments already covered in this book, the lost time, the quietly diminishing capacity to engage with real life, the long-term toll on intimacy and mood, haven't been enough to create that shift on their own, a self-bought gift certainly won't do it either. Those external incentives only succeed in making the imaginary sacrifice feel even larger.</p>
+<p>Instead, keep the focus on the other side of the ledger. Keep asking the only questions that actually matter here:</p>
+<p><em>What is hentai actually giving me?</em></p>
+<p><strong>Nothing.</strong></p>
+<p><em>Why do I feel I need to do this?</em></p>
+<p><strong>You don't. The only thing happening here is that you're punishing yourself with something that gives nothing back.</strong> The odds are entirely in your favour: almost nothing real is being given up (the fading arousal you've been experiencing is a symptom of the dependency, not something you'll lose by quitting), while the potential gains, genuine responsiveness to real stimuli, a steadier baseline mood, genuine freedom from the internal noise, are real and available.</p>
+<p>On announcing your quit to friends or family: it might seem like a good way to create accountability, but it tends to produce a specific wrong result. You become a proud former-user, which is a position, a label to maintain, rather than simply a free person who no longer needs this. It can also create awkward dynamics with a partner, who may read the announcement as something about the relationship rather than about you and your own habit. Unless the people around you have a clear, open-minded understanding of what's actually been going on, the conversation usually creates more complications than it resolves.</p>
+<p>Any external pressure to quit, whether from others or from conditions you've set for yourself, tends to give the little monster more surface area to work with. Trying to suppress or avoid the thought directly has a similar effect, the harder you push the thought away, the more it pushes back.</p>
+<p>A more effective approach: when you notice the thought, a craving, a cue, an idle pull in a familiar direction, simply observe it and respond with something like, <em>"Good, I've noticed that. I'm not that person anymore. I'm free, and I'm glad to know the difference."</em> This cuts off the fuel before the thought builds into a craving. It doesn't fight the thought, it simply declines to feed it. For many people, basic mindfulness practice, specifically the skill of noticing a thought without acting on it, turns out to be genuinely useful here. Not to suppress anything, but to see the thought clearly for what it is: a signal from a pattern that's already losing its grip, not an instruction you need to follow.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="23_can_i_compartmentalise.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="25_the_easy_way_to_stop.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="23_can_i_compartmentalise.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="25_the_easy_way_to_stop.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

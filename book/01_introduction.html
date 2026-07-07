@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Introduction - The EasyPeasy Way to Quit Hentai</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The EasyPeasy Way to Quit Hentai</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>EasyPeasy is available in multiple languages.</p>
+<img src="images/easypeasy.png" alt="Description" style="width: 20vw; height: auto;">
+<p><span style="font-size:xx-large;">DO NOT JUMP CHAPTERS</span></p>
+<p>This open source book will enable you to stop using hentai immediately, painlessly, and permanently without willpower or any sense of deprivation or sacrifice. It won't place any judgement, embarrassment, or pressure to undergo painful measures.</p>
+<p>In fact, there's absolutely no need to cut down or reduce your usage whilst reading; doing so is actually detrimental.</p>
+<p>You might be apprehensive about the very thought, or one of the many people actively trying to quit and finding their way to communities built around recovery. If so, perhaps what you've already read goes against everything you've ever been told, but ask yourself if what you've been told has worked? If it had, you wouldn't be reading this book at all.</p>
+<p>Perhaps you identify with the following questions:</p>
+<ul>
+<li>
+<p>Do you spend far more time viewing hentai than you originally intended?</p>
+</li>
+<li>
+<p>Are you unsuccessful in efforts to stop or limit your consumption of hentai?</p>
+</li>
+<li>
+<p>Has time spent viewing hentai interfered with, or taken precedence over personal or professional commitments, hobbies, or relationships in your life?</p>
+</li>
+<li>
+<p>Do you go out of your way to keep your hentai consumption secret (e.g. deleting browser history, using incognito mode exclusively, lying about what you watch)?</p>
+</li>
+<li>
+<p>Has viewing hentai caused significant problems in intimate relationship(s)?</p>
+</li>
+<li>
+<p>Do you experience a cycle of arousal and enjoyment before and during hentai consumption, followed by feelings of shame, guilt, and remorse after?</p>
+</li>
+<li>
+<p>Do you spend significant amounts of time thinking about hentai, even when not watching it, or find yourself seeking out new series, artists, or genres to chase a feeling the old ones no longer give you?</p>
+</li>
+<li>
+<p>Has viewing hentai caused any other negative consequences in your personal or professional life (e.g. missed work, poor performance, neglected relationships, financial problems)?</p>
+</li>
+</ul>
+<p>If you're a hentai user that depends on it for masturbation or sex <em>at all</em> and <em>for any reason</em>, all you need to do is read on.
+If you're here for a loved one, all you need to do is persuade them to read this book.
+But if unable to persuade them, read the book yourself. Understanding the method assists getting the message across and preventing your children from starting. Don't be fooled by the fact that they don't have access to it now -- almost all access before getting hooked, and hentai's presentation as "just cartoons" or "just art" makes it look harmless to a young person in a way live-action material doesn't.</p>
+<h2 id="about-the-book"><a class="header" href="#about-the-book">About the book</a></h2>
+<p>This book is adapted from <em>The EasyPeasy Way to Quit Pornography</em>, which itself rewrites the logic of <em>Allen Carr's Easyway to Quit Smoking</em> for the internet age. It's free and open source, licensed under CC-BY-SA. Its success rests on the foundation that you:</p>
+<p><span style="font-size:xx-large;">DO NOT JUMP CHAPTERS</span></p>
+<p>When opening a combination lock, you have to enter the numbers in the right order. Addiction isn't any different.</p>
+<p>If you're anything like most people who pick up this book, you discovered hentai relatively young, often well before you discovered anything else about sex, and have used it ever since. Maybe you've stumbled across literature warning of the dangers of pornography generally and quietly assumed it didn't apply to you, because what you watch is drawn, not filmed. Like many others, you've probably succeeded with streaks of various lengths, only to eventually return. This method works entirely differently, and for many, it's the only one that has worked.</p>
+<p>Or perhaps you've been linked this book by a concerned partner, friend, or family member, and you're skeptical. Firstly, thank you for at least looking at it. This will be expanded upon shortly, but please briefly recall the first time you watched hentai. Did you expect that you'd return to it for years afterward? EasyPeasy is equally effective for the casual user as it is for the heavily dependent one. It's not terribly long, with a high chance of large gains, so I'd ask you to keep reading.</p>
+<p>The method described in this hackbook is:</p>
+<ul>
+<li>
+<p>Instantaneous.</p>
+</li>
+<li>
+<p>Equally as effective for the heavy and casual user alike.</p>
+</li>
+<li>
+<p>Causes no bad withdrawal pangs.</p>
+</li>
+<li>
+<p>Needs no willpower.</p>
+</li>
+<li>
+<p>Requires no shock treatment, aids, or gimmicks.</p>
+</li>
+<li>
+<p>Won't cause you to replace this habit with other compulsive behaviors.</p>
+</li>
+<li>
+<p>Permanent.</p>
+</li>
+</ul>
+<p>You might find this impossible to believe, but this sentiment is echoed by many who've gone through it.</p>
+<blockquote>
+<p><em>"I always told myself it was different because it wasn't real. No real person being filmed, no exploitation, just art. That belief is exactly what kept me stuck for years, because it gave me a reason to never seriously question the habit."</em></p>
+<p>--- u/deleted</p>
+</blockquote>
+<blockquote>
+<p><em>"I tried blocking sites, switching to softer genres, telling myself I'd only watch on weekends. None of it held for more than a few weeks. What actually worked was understanding why I wanted it in the first place. Once that clicked, stopping wasn't a fight anymore."</em></p>
+<p>--- u/deleted</p>
+</blockquote>
+<p>These are illustrative composites drawn from common patterns reported by people who've used this method, not direct quotations from any single named individual.</p>
+<h2 id="warning"><a class="header" href="#warning">Warning</a></h2>
+<p>If you're expecting this book to "scare" you into quitting by listing every health and relationship risk associated with hentai use, such as difficulty with arousal in real-world intimacy, escalating tolerance toward more extreme or novel content, or the discomfort of realising how much time and money has gone into it, alongside the blunt accusation that you're a weak-willed pervert who should simply try harder, you'll be disappointed. Those tactics rarely help anyone quit, and if they were going to work for you, you'd have quit already.</p>
+<p>Conventional approaches to quitting hentai tend to fall into one of two camps. The first is willpower: white-knuckling through cravings, blocking software, accountability partners, "just don't look." The second is moderation: switching to "tamer" genres, setting a weekly limit, allowing it only as a reward. Some recovery communities cite real neuroscience about dopamine and novelty-seeking, and that material isn't wrong, but knowing the mechanism isn't the same as being free of the urge. Both willpower and moderation fail for the same underlying reason: they don't remove the <em>want</em>. Turning something into a forbidden, rationed treat is not how addiction is actually treated.</p>
+<p>This method, EasyPeasy, works differently. Some of what follows might be difficult to believe at first, but by the time you've finished this book, you won't just believe it, you'll wonder how you were ever convinced of the alternative.</p>
+<p>There's a common misconception that we choose to watch hentai, the way we might choose a TV show. People dependent on hentai (yes, dependent, even if the word "addict" feels too strong for something that's just pictures and animation) no more choose this than someone dependent on alcohol chooses alcoholism. It's true that we choose to open the browser, choose to type in the site, choose the next chapter or episode. But nobody consciously decided, the first time, to still be doing this years later, organizing parts of their life around it, feeling unable to stop. Curiosity and a normal human interest in sex led most of us there. Nobody would have continued if they'd known, on day one, what it would cost in time, secrecy, and connection to real people.</p>
+<p>Take a moment to reflect: did you ever make a deliberate, considered decision that you <em>need</em> hentai specifically, more than other forms of intimacy or pleasure, to feel calm, entertained, or aroused? Did you decide, consciously, that real intimacy would feel flat by comparison? At what point did it become something you reached for automatically when stressed, bored, or alone, rather than something you occasionally enjoyed?</p>
+<p>Like every other hentai user, you've been drawn into a trap that's subtle precisely because the material doesn't look or feel like "real" pornography. It's stylised. It's often funny, or sweet, or tied to stories and characters people genuinely like. That's part of what makes it dangerous: it doesn't carry the same instinctive sense of "this is something to be careful with" that other pornography might. Almost nobody wants their child relying on hentai to cope or to feel okay. That alone tells you something: nobody needs it before they get hooked, and most people, if asked honestly, wish they'd never started.</p>
+<p>And yet, at the same time, every user wants to keep using. Nobody forces the next click. It's only ever the user who decides to open the next chapter, the next episode, the next tab.</p>
+<p>If there were a button you could press to wake up tomorrow as if you'd never seen your first piece of hentai, the only people still drawn to it would be those young enough to be encountering it for the first time, out of simple curiosity, before any habit had formed.</p>
+<p>The only thing standing between you and quitting is <strong>FEAR</strong>. Fear that you'll have to endure some indefinite stretch of misery, boredom, or unsatisfied craving to be free of it. That fear comes from irrational beliefs, picked up gradually, such as:</p>
+<ul>
+<li>
+<p>That masturbation to orgasm is the most important and necessary part of unwinding or falling asleep.</p>
+</li>
+<li>
+<p>That hentai is "safer" than pursuing real intimacy, because a drawing can't reject you, judge you, or complicate your life.</p>
+</li>
+<li>
+<p>That because it's fictional and harms no real performer, it's essentially harmless and not worth questioning.</p>
+</li>
+<li>
+<p>That you're entitled to a "perfect," endlessly variable experience that real partners or your own imagination can't match.</p>
+</li>
+<li>
+<p>That more variety, more novelty, more extreme content is always better.</p>
+</li>
+</ul>
+<p>Acted on, these beliefs lead to real consequences:</p>
+<ul>
+<li>
+<p>Chasing increasingly niche or intense content to recreate a feeling that's faded.</p>
+</li>
+<li>
+<p>Quietly comparing real partners, or your own sex life, to an idealized and infinitely customisable fictional standard.</p>
+</li>
+<li>
+<p>Feeling like something is wrong with you for wanting connection that feels "boring" by comparison.</p>
+</li>
+<li>
+<p>Avoiding real intimacy because it requires effort, vulnerability, and the possibility of rejection.</p>
+</li>
+<li>
+<p>Forcing yourself through the cycle even when it no longer brings real enjoyment, just relief from not doing it.</p>
+</li>
+</ul>
+<p>It's fear that an evening alone will be unbearable without it. Fear that you won't be able to relax, fall asleep, or get through a stressful day without that release. Fear that your personality, your concentration, your way of unwinding will permanently change without your "harmless" habit.</p>
+<p>But most of all, it's the fear that you're simply built this way now, that you'll spend the rest of your life quietly craving it at odd moments, never fully free. If you've already tried cutting down, switching genres, or gritting your teeth through the willpower method, that fear is probably familiar, and you may already be convinced you can't actually quit.</p>
+<p>If you're anxious or unsure the timing is right, understand this clearly: that anxiety isn't relieved by hentai, it's caused by the trap hentai has built around you. You didn't choose to fall into it, but like any trap, it's built to keep you there. When you watched your first hentai, did you decide then that you'd still be watching it years on? So when exactly will you stop? Tomorrow? Next year? The trap doesn't work on a deadline you set. That's precisely why so many people drift through years of it without ever consciously deciding to stay.</p>
+<p>EasyPeasy works like that imaginary button. It isn't magic. But for the people who've used it, including whoever first adapted it for this purpose, it can feel close to it.</p>
+<p>Here is the honest warning: every user wants to quit, and every user can find quitting easy. The only thing in the way is fear, and you won't lose that fear until you finish the book. Your fear may actually <em>increase</em> partway through, which is itself the moment most likely to make you stop reading. Don't.</p>
+<p>You didn't decide to fall into this trap, but you do have to decide, actively, to leave it. You may already want out badly, or you may feel unsure about even reading this. Either way: <strong>you have nothing to lose.</strong> You don't have to cut down or stop while reading. There's no shock treatment here. By the end, the goal is for you to feel the way anyone feels on walking out of somewhere they'd assumed they were stuck in for good.</p>
+<h3 id="a-note-on-what-this-book-is-and-isnt"><a class="header" href="#a-note-on-what-this-book-is-and-isnt">A note on what this book is, and isn't</a></h3>
+<p>This book uses a behavioural and cognitive approach to address compulsive hentai use. It is not a substitute for medical care, psychiatric treatment, or legal advice, and it does not diagnose any condition. If your use of hentai (or any pornography) is tangled up with depression, trauma, OCD, or compulsive behaviour that feels outside your control in ways this book doesn't address, please also consider speaking with a doctor or therapist alongside reading this.</p>
+<p>One further point needs to be stated plainly, separate from everything else in this book. If your viewing habits have ever drifted toward content depicting characters who appear to be minors, this is not a "genre preference" to work through with willpower or habit-change techniques, and this book is not the right tool for it. That pattern needs a conversation with a qualified mental health professional, not a self-help method. If this applies to you, please reach out to a therapist or a relevant professional support service rather than trying to handle it alone.</p>
+<h2 id="finally"><a class="header" href="#finally">Finally</a></h2>
+<p>Everyone can find it easy and enjoyable to quit hentai, including you. All you have to do is read the rest of this book with an open mind; the more you understand, the easier it becomes. Even if a section doesn't fully land on first read, provided you follow the instructions, you'll still find it easy. Most importantly, you won't spend your life missing hentai or feeling deprived. By the end of the book, the real mystery will be why it took this long.</p>
+<p>With EasyPeasy, there are only two reasons for failure.</p>
+<p><strong>Failure to follow instructions.</strong>
+Some readers find it frustrating that this book is so insistent about a few specific things, like not trying to cut down first, or not reaching for "safer" substitute genres. People do occasionally succeed despite ignoring that advice, but they succeed in spite of it, not because of it. The combination for this particular lock is in this book, but the numbers have to go in order: chapter by chapter, without skipping ahead.</p>
+<p><strong>Failure to understand.</strong>
+Don't take anything here for granted. Question what you've been told, by society, by communities, by your own past justifications, about hentai, fiction, and addiction. If you believe it's "just a habit," ask why some genuinely enjoyable habits are easy to drop while this one, which often leaves you feeling worse afterward, isn't. If you believe you simply enjoy it, ask why you don't feel the same pull toward other things you enjoy far more. Why does this specifically have to happen? Why does skipping it cause unease?</p>
+<p>This book exists to show you how easy and enjoyable quitting hentai can be. Escaping it is something every user would value, whether or not they'd admit that out loud right now.</p>
+<p><strong>REMEMBER: DO NOT SKIP CHAPTERS.</strong></p>
+<p>A couple of terms used throughout this book:</p>
+<p><em><strong>PMO</strong></em>: The cycle of (h)entai or pornography, masturbation, and orgasm.
+<em><strong>Online harem</strong></em>: The rotating collection of sites, series, or characters a user habitually returns to for hentai.</p>
+<h2 id="tips-for-reading-and-final-minor-notes"><a class="header" href="#tips-for-reading-and-final-minor-notes">Tips for reading, and final minor notes</a></h2>
+<p><strong>Don't read this like a normal book.</strong> It's short, and you should be able to get through it in a couple of hours. Most readers benefit from highlighting or taking notes, and rereading once fully through tends to cement the ideas.</p>
+<p>Why a hackbook? Because the original method this is built on, Allen Carr's Easyway, doesn't list internet hentai among the addictions its institutions formally treat, and most general pornography-recovery material doesn't address what's specific to hentai at all. This adaptation exists to fill that gap. There's no monetary or other gain involved in writing it.</p>
+<p>Throughout this book, the voice shifts between the adapter of this text, the original Easyway-for-pornography author, and occasionally Allen Carr's own framing, all aimed at giving you one coherent, workable method.</p>
+<p><span style="font-size:smaller;"><strong>Hackbook:</strong> A book based on and adapted from another book. The original author and lineage are fully credited.</span></p>
+<p>Communities built around this method exist as well, but it's worth finishing the book itself before seeking them out.</p>
+<p>Quick reminder: <span style="font-size:larger;"><strong>DO NOT JUMP CHAPTERS</strong></span></p>
+<p>I'd wish you luck, but as you'll come to learn, you won't need it.</p>
+<p>Good vibes,</p>
+<p>Hackauthor²</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="02_the_easy_method.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="02_the_easy_method.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

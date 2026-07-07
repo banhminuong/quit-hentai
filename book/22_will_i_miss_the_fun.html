@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Will I miss the fun? - The EasyPeasy Way to Quit Hentai</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The EasyPeasy Way to Quit Hentai</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="will-i-miss-the-fun"><a class="header" href="#will-i-miss-the-fun">Will I miss the fun?</a></h1>
+<p><strong>No.</strong> Once the little monster has genuinely died down, once your body stops craving that particular dopamine spike, and the neural pathways that have been reinforcing this pattern start fading from simple lack of use, whatever conditioning remains will fade along with them. Not only will you find yourself better equipped, physically and mentally, to handle ordinary stress, you'll actually get more out of the good moments in life too, not less.</p>
+<p>There's really only one genuine risk left at that point: the influence of people around you who still treat sex, or release generally, as their main coping mechanism. <em>The grass looks greener on the other side</em> shows up everywhere in life, and it's an easy trap to fall into. But it's worth asking directly: given how lopsided the actual cost-benefit picture is here, why would anyone who's escaped ever look back with envy at someone still demanding hentai as a crutch?</p>
+<p>Given how much conditioning we all absorb from childhood onward, it makes sense that plenty of people fall into this in the first place. What's stranger is what happens <em>after</em> someone clearly sees the trap for what it is and manages to break free, and then still finds themselves drawn back toward it. That pull usually traces back to broader cultural messaging that quietly equates hentai with healthy, normal sexuality. An ex-user might feel a sudden pang, often tied to ordinary insecurity about being single (which isn't actually a problem in itself), and that flicker of anxiety can make the old water slide look tempting again. It's a genuinely strange pattern, especially next to this fact: every non-user is glad to be one, and even fully dependent users, deep down, wish they'd never started, despite whatever distorted sense of enjoyment or relief they're currently telling themselves they feel. So why would anyone newly free of it feel envy at all? A couple of reasons tend to explain it.</p>
+<ol>
+<li>
+<p><strong>The myth of "just one peek."</strong> As covered earlier, it doesn't actually exist as a contained, harmless thing. Instead of picturing some isolated, easy moment, picture the actual experience of the person currently still using. You might envy them in the abstract, but they don't envy themselves, and in a strange twist, plenty of them would genuinely envy you. If you could somehow watch a dependent user from a completely detached, clinical distance, it might be one of the most useful things you could do for your own resolve. Notice how quickly they cycle through tabs and windows, skipping ahead, losing interest fast, chasing something new across an ever-widening range of material in search of whatever still registers as novel or intense enough. Notice how automatic the whole thing looks, barely a conscious decision at any point. Remember: none of this is enjoyment. It's simply the inability to feel okay without it. The next morning brings reduced motivation, low energy, and the same cycle repeating at the very first sign of stress. What's actually on offer there is a long stretch of quietly diminished mental health and steadily eroding confidence, a background hum of self-disgust, in exchange for what, exactly? A momentary illusion of having "earned" some deserved pleasure?</p>
+</li>
+<li>
+<p><strong>The sense of being left out.</strong> The second reason some ex-users feel a pang is simpler: the dependent user is actively doing something, and the non-user isn't, which can create a vague feeling of missing out. Get this clear: it's not the non-user who's missing anything. It's the dependent user who's quietly forfeiting:</p>
+<ul>
+<li>Health</li>
+<li>Energy</li>
+<li>Confidence</li>
+<li>Peace of mind</li>
+<li>Genuine intimacy</li>
+<li>A settled, calm mind</li>
+<li>Freedom</li>
+<li>Self-respect</li>
+</ul>
+</li>
+</ol>
+<p>It's worth breaking the habit of envying anyone still caught in this, and instead seeing the pattern for what it actually is: something genuinely difficult to be stuck in, not something enviable. This isn't said from a distance either, plenty of people who eventually write or adapt material like this were once deeply caught in exactly the same pattern themselves. That's precisely why you're reading something written from the other side of it, rather than something written by someone still unable to look at their own situation honestly.</p>
+<p>You wouldn't feel envy toward someone dependent on a hard drug, and the same basic logic applies here. Left alone, this doesn't tend to improve on its own, it tends to deepen, gradually, year over year. If today's version of this isn't bringing much genuine enjoyment, there's no reason to expect tomorrow's version to feel any better. There's no real reason to envy anyone still caught in this. If anything, it's worth genuinely hoping they find their own way out too.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="21_timing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="23_can_i_compartmentalise.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="21_timing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="23_can_i_compartmentalise.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
